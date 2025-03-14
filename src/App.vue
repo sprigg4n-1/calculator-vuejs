@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const prevNumber = ref<string>('')
-const typedNumber = ref<string>('0')
+const typedNumber = ref<string>('')
 const chosenSign = ref<string>('')
 const calculeteRow = ref<string>('')
 
 const onClickChooseSign = (sign: string) => {
   chosenSign.value = sign
 
-  if (typedNumber.value !== '0') {
+  if (typedNumber.value !== '') {
     prevNumber.value = typedNumber.value
 
     calculeteRow.value = `${prevNumber.value} ${chosenSign.value}`
   }
 
-  typedNumber.value = '0'
+  typedNumber.value = ''
 }
 
 const onClickGetResult = () => {
@@ -49,17 +49,13 @@ const onClickSetNumber = (value: string) => {
 }
 
 const onClickReset = () => {
-  typedNumber.value = '0'
+  typedNumber.value = ''
   calculeteRow.value = ''
   prevNumber.value = ''
 }
 
 const onClickSlice = () => {
-  if (typedNumber.value.length === 1) {
-    typedNumber.value = '0'
-  } else {
-    typedNumber.value = typedNumber.value.slice(0, typedNumber.value.length - 1)
-  }
+  typedNumber.value = typedNumber.value.slice(0, typedNumber.value.length - 1)
 }
 </script>
 
@@ -68,7 +64,7 @@ const onClickSlice = () => {
     <div class="calculator">
       <div class="calculator__screen">
         <span class="calculator__screen-top">{{ calculeteRow }}</span>
-        <span class="calculator__screen-bottom">{{ typedNumber }}</span>
+        <input v-model="typedNumber" class="calculator__screen-bottom" placeholder="0" />
       </div>
       <div class="calculator__buttons">
         <button class="calculator__buttons-btn" @click="onClickReset">CE</button>
@@ -114,11 +110,12 @@ const onClickSlice = () => {
   display: flex;
   flex-direction: column;
   align-items: end;
-  height: 65px;
+  height: fit-content;
   justify-content: space-between;
   margin-bottom: 10px;
   background-color: rgb(85, 85, 85);
   padding: 8px 15px;
+  gap: 10px;
 }
 
 .calculator__screen-top {
@@ -128,6 +125,13 @@ const onClickSlice = () => {
 .calculator__screen-bottom {
   font-size: 24px;
   font-weight: bold;
+  background-color: transparent;
+  border: none;
+  text-align: right;
+  color: white;
+  padding: 5px 10px;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
 }
 
 .calculator__buttons {
