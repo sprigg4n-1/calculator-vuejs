@@ -67,7 +67,7 @@ const onClickSlice = () => {
     <div class="calculator">
       <div class="calculator__screen">
         <span class="calculator__screen-top">{{ calculeteRow }}</span>
-        <InputComponent :value="typedNumber" v-model="typedNumber" />
+        <InputComponent v-model="typedNumber" />
       </div>
       <div class="calculator__buttons">
         <ButtonComponent value="CE" @click="onClickReset" />

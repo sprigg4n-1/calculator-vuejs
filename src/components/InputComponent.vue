@@ -1,11 +1,9 @@
 <script setup lang="ts">
-const props = defineProps({
-  value: String,
-})
+const modelValue = defineModel<string>()
 </script>
 
 <template>
-  <input v-model="props.value" class="calculator__screen-bottom" placeholder="0" />
+  <input v-model="modelValue" class="calculator__screen-bottom" placeholder="0" />
 </template>
 
 <style scoped>
