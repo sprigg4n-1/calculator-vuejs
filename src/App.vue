@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import ButtonComponent from './components/ButtonComponent.vue'
+import InputComponent from './components/InputComponent.vue'
+
 const prevNumber = ref<string>('')
 const typedNumber = ref<string>('')
 const chosenSign = ref<string>('')
@@ -64,26 +67,26 @@ const onClickSlice = () => {
     <div class="calculator">
       <div class="calculator__screen">
         <span class="calculator__screen-top">{{ calculeteRow }}</span>
-        <input v-model="typedNumber" class="calculator__screen-bottom" placeholder="0" />
+        <InputComponent :value="typedNumber" />
       </div>
       <div class="calculator__buttons">
-        <button class="calculator__buttons-btn" @click="onClickReset">CE</button>
-        <button class="calculator__buttons-btn btn-2" @click="onClickSlice">⌫</button>
-        <button class="calculator__buttons-btn" @click="onClickChooseSign('+')">+</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('1')">1</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('2')">2</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('3')">3</button>
-        <button class="calculator__buttons-btn" @click="onClickChooseSign('-')">-</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('4')">4</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('5')">5</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('6')">6</button>
-        <button class="calculator__buttons-btn" @click="onClickChooseSign('/')">/</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('7')">7</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('8')">8</button>
-        <button class="calculator__buttons-btn" @click="onClickSetNumber('9')">9</button>
-        <button class="calculator__buttons-btn" @click="onClickChooseSign('x')">x</button>
-        <button class="calculator__buttons-btn btn-2" @click="onClickSetNumber('0')">0</button>
-        <button class="calculator__buttons-btn btn-2" @click="onClickGetResult">=</button>
+        <ButtonComponent value="CE" @click="onClickReset" />
+        <ButtonComponent value="⌫" is-big @click="onClickSlice" />
+        <ButtonComponent value="+" @click="onClickChooseSign('+')" />
+        <ButtonComponent value="1" @click="onClickSetNumber('1')" />
+        <ButtonComponent value="2" @click="onClickSetNumber('2')" />
+        <ButtonComponent value="3" @click="onClickSetNumber('3')" />
+        <ButtonComponent value="-" @click="onClickChooseSign('-')" />
+        <ButtonComponent value="4" @click="onClickSetNumber('4')" />
+        <ButtonComponent value="5" @click="onClickSetNumber('5')" />
+        <ButtonComponent value="6" @click="onClickSetNumber('6')" />
+        <ButtonComponent value="-" @click="onClickChooseSign('/')" />
+        <ButtonComponent value="7" @click="onClickSetNumber('7')" />
+        <ButtonComponent value="8" @click="onClickSetNumber('8')" />
+        <ButtonComponent value="9" @click="onClickSetNumber('9')" />
+        <ButtonComponent value="x" @click="onClickChooseSign('x')" />
+        <ButtonComponent value="0" is-big @click="onClickSetNumber('0')" />
+        <ButtonComponent value="=" is-big @click="onClickGetResult" />
       </div>
     </div>
   </div>
@@ -122,39 +125,9 @@ const onClickSlice = () => {
   font-size: 16px;
   color: rgb(182, 182, 182);
 }
-.calculator__screen-bottom {
-  font-size: 24px;
-  font-weight: bold;
-  background-color: transparent;
-  border: none;
-  text-align: right;
-  color: white;
-  padding: 5px 10px;
-  width: 100%;
-  background-color: rgb(0, 0, 0);
-}
 
 .calculator__buttons {
   display: flex;
   flex-wrap: wrap;
-}
-
-.calculator__buttons-btn {
-  width: 25%;
-  border: none;
-  height: 70px;
-  font-size: 24px;
-  border: 1px solid rgb(39, 39, 39);
-  cursor: pointer;
-  background-color: rgb(168, 168, 168);
-}
-
-.calculator__buttons-btn:hover {
-  background-color: white;
-  transition: 0.3s all;
-}
-
-.calculator__buttons-btn.btn-2 {
-  width: 50%;
 }
 </style>
